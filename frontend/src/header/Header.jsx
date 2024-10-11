@@ -8,7 +8,7 @@ export const Header = () => {
                 <a className="btn btn-ghost text-xl">EShopper</a>
                 
           </div>
-            <ul className="menu menu-horizontal p-0 ">
+            <ul className="menu menu-horizontal p-0 ml-10 ">
                 <li ><a className='hover:bg-transparent'>Home</a></li>
                 <li><a className='hover:bg-transparent'>About</a></li>
                 <li><a className='hover:bg-transparent'>Products</a></li>
