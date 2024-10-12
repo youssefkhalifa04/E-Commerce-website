@@ -2,7 +2,7 @@ import React from 'react'
 import { ThemeController } from './ThemeController'
 export const Header = () => {
   return (
-    <div className='fuck fixed top-0 right-0 left-0'>
+    <div className='fuck fixed top-0 right-0 left-0 z-50'>
         <div className="navbar bg-base-100 flex items-center justify-around">
           <div className="">
                 <a className="btn btn-ghost text-xl">EShopper</a>
