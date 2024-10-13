@@ -43,37 +43,37 @@ export const Cart = () => {
     const [items, setItems] = useState([
         {
             id: 1,
-            name: 'Pi Pizza Oven',
+            name: 'Timberland 6" Premium Boot',
             shipDate: 'Estimated Ship Date: June 6th',
-            description: 'Fuel Source: Wood Only',
-            price: 469.99,
-            quantity: 1
-        },
-        {
+            description: 'Waterproof Leather',
+            price: 199.99,
+            quantity: 1,
+          },
+          {
             id: 2,
-            name: 'Grill Ultimate Bundle',
-            description: 'Add accident protection for $29.99',
-            price: 549.99,
-            quantity: 1
-        },
-        {
+            name: 'Dr. Martens 1460 Pascal Velvet Boots',
+            description: 'Classic velvet upper with tough leather construction',
+            price: 179.99,
+            quantity: 1,
+          },
+          {
             id: 3,
-            name: 'Starters (4 pack)',
-            price: 0.00,
-            quantity: 1
-        },
-        {
+            name: 'Red Wing Iron Ranger Boots',
+            price: 329.99,
+            quantity: 1,
+          },
+          {
             id: 4,
-            name: 'Charcoal Grill Pack',
-            price: 0.00,
-            quantity: 1
-        },
-        {
+            name: 'Columbia Bugaboot Plus IV Omni-Heat',
+            price: 139.99,
+            quantity: 1,
+          },
+          {
             id: 5,
-            name: 'iphone xr',
-            price: 600,
-            quantity: 1
-        }
+            name: 'Sorel Caribou Boot',
+            price: 169.99,
+            quantity: 1,
+          },
     ]);
 
     const handleQuantityChange = (id, newQuantity) => {

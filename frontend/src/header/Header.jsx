@@ -1,5 +1,5 @@
 import React from "react";
-import { ThemeController } from "./ThemeController";
+import { Theme } from "./Theme";
 import { useNavigate } from "react-router-dom";
 import img from "../assets/person.svg";
 
@@ -10,11 +10,11 @@ export const Header = () => {
     <div className="fuck fixed top-0 right-0 left-0 z-50">
       <div className="navbar bg-base-100 flex items-center justify-around">
         <div className="">
-          <a className="btn btn-ghost text-xl">EShopper</a>
+          <a className="btn btn-ghost text-xl" onClick={() => navigate("/")}>EShopper</a>
         </div>
         <ul className="menu menu-horizontal p-0 ml-10">
           <li>
-            <a className="hover:bg-transparent">Home</a>
+            <a className="hover:bg-transparent" onClick={() => navigate("/")}>Home</a>
           </li>
           <li>
             <a className="hover:bg-transparent">About</a>
@@ -28,7 +28,7 @@ export const Header = () => {
         </ul>
 
         <div className="flex-none">
-          <ThemeController />
+          <Theme />
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTheme } from './ThemeContext.jsx'; // Adjust the path accordingly
 
-export const ThemeController = () => {
+export const Theme = () => {
   const { theme, setTheme } = useTheme();
 
   const handleThemeChange = (event) => {
@@ -9,7 +9,7 @@ export const ThemeController = () => {
   };
 
   return (
-    <div hidden>
+    <div >
       <div className="dropdown">
         <div tabIndex={0} role="button" className="btn btn-ghost">
           Theme
