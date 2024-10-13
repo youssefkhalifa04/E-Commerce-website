@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { ThemeController } from './ThemeController'
 export const Header = () => {
   return (
@@ -13,6 +14,7 @@ export const Header = () => {
                 <li><a className='hover:bg-transparent'>About</a></li>
                 <li><a className='hover:bg-transparent'>Products</a></li>
                 <li><a className='hover:bg-transparent'>Contact</a></li>
+                <li><Link to="/login" className='hover:bg-transparent'>Log IN</Link></li>
                 
             </ul>
             
