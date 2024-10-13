@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './basket.css';
 import 'boxicons'
-import trash from '../assets/trash.png'
+import trash from '../assets/trash.svg'
 const CartItem = ({ item, onQuantityChange, onDelete }) => {
     const handleIncrement = () => {
         onQuantityChange(item.id, item.quantity + 1);
@@ -31,7 +31,7 @@ const CartItem = ({ item, onQuantityChange, onDelete }) => {
             <td className="item-total">${(item.price * item.quantity).toFixed(2)}</td>
             <td>
                 <button className="" onClick={() => onDelete(item.id)}>
-                    <img src={trash} alt="" />
+                    <img src={trash} className='w-7'/>
                 </button>
             </td>
         </tr>

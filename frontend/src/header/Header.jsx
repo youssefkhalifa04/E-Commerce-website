@@ -1,27 +1,23 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { ThemeController } from './ThemeController'
+import React from 'react';
+import { ThemeController } from './ThemeController';
+import { useNavigate } from 'react-router-dom';
+
 export const Header = () => {
   const navigate = useNavigate(); // Hook call here
   
   return (
     <div className='fuck fixed top-0 right-0 left-0 z-50'>
-        <div className="navbar bg-base-100 flex items-center justify-around">
-          <div className="">
-                <a className="btn btn-ghost text-xl">EShopper</a>
-                
-          </div>
-            <ul className="menu menu-horizontal p-0 ml-10 ">
-                <li ><a className='hover:bg-transparent'>Home</a></li>
-                <li><a className='hover:bg-transparent'>About</a></li>
-                <li><a className='hover:bg-transparent'>Products</a></li>
-                <li><a className='hover:bg-transparent'>Contact</a></li>
-                <li><Link to="/login" className='hover:bg-transparent'>Log IN</Link></li>
-                
-            </ul>
-            
-            
-          <div className="flex-none">
+      <div className="navbar bg-base-100 flex items-center justify-around">
+        <div className="">
+          <a className="btn btn-ghost text-xl">EShopper</a>
+        </div>
+        <ul className="menu menu-horizontal p-0 ml-10">
+          <li><a className='hover:bg-transparent'>Home</a></li>
+          <li><a className='hover:bg-transparent'>About</a></li>
+          <li><a className='hover:bg-transparent'>Products</a></li>
+          <li><a className='hover:bg-transparent'>Contact</a></li>
+        </ul>
+
         <div className="flex-none">
           <ThemeController />
           <div className="dropdown dropdown-end">
