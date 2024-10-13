@@ -2,10 +2,10 @@ import React from 'react';
 import search from '../assets/search.svg';
 import notifications from '../assets/notifications.svg';
 
-
+ 
 export const TopHeader = ({ PageTitle }) => { 
   return (
-    <div className="interface flex flex-col w-full pt-3 pb-3  border-b-2   border-slate-600">
+    <div className="interface flex flex-col w-full pt-3 pb-3  border-b-2   border-slate-600 select-none">
       <div className="interface-header w-full bg-transparent  flex justify-between items-center">
         <div className='pl-20 '>
           <h1 className='text-2xl'>{PageTitle}</h1>

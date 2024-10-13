@@ -12,7 +12,7 @@ export const SideBar = ({ onSendMessage }) => {
     // Initialize selectedItem to 'dashboard' to keep it active on load
     const [selectedItem, setSelectedItem] = useState('dashboard');
 
-    const sendMessage = (message, title, item) => {
+    const sendMessage = (message ,state, title, item) => {
         setSelectedItem(item); 
         if (onSendMessage) {
             onSendMessage(message, title);
@@ -30,11 +30,11 @@ export const SideBar = ({ onSendMessage }) => {
     ];
 
     return (
-        <div className='side-bar w-1/6 flex flex-col justify-start border-2 rounded-l-xl border-slate-600 h-full pt-16'>
+        <div className='side-bar w-1/6 flex flex-col justify-start border-2 rounded-l-xl border-slate-600 h-full pt-16 select-none'>
             {items.map((item) => (
                 <div
                     key={item.id}
-                    onClick={() => sendMessage(item.message, item.title, item.id)} 
+                    onClick={() => sendMessage(item.message, item.state ,item.title, item.id)} 
                     className={`dash-row pl-5 pt-2 pb-2 cursor-pointer gap-2 flex justify-start items-center ${selectedItem === item.id ? 'active' : ''}`} // Add active class if selected
                 >
                     <div className="w-9 flex justify-center items-center">

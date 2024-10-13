@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './basket.css';
 import 'boxicons'
 import trash from '../assets/trash.svg'
+import { Header } from '../header/Header';
 const CartItem = ({ item, onQuantityChange, onDelete }) => {
     const handleIncrement = () => {
         onQuantityChange(item.id, item.quantity + 1);
@@ -100,9 +101,7 @@ export const Cart = () => {
 
     return (
         <div className="main select-none">
-            <div className='bg-green-500 fixed top-0 right-0 left-0'>
-                <h1 >Hello dear costumer</h1>
-            </div>
+            <Header/>
             <div className="cart-container">
             <h1>Your Cart ({items.length} items)</h1>
             <table className="cart-table">
