@@ -1,22 +1,21 @@
-import React from 'react'
+import React from 'react';
+import img1 from "../assets/hero.svg.jpg"; // Adjust the path as necessary
 
 export const Hero = () => {
   return (
-    <div
-    className="hero min-h-screen"
-    style={{
-      backgroundImage: "url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp)",
-    }}>
-        <div className="hero-overlay bg-opacity-60"></div>
-        <div className="hero-content text-neutral-content text-center">
-            <div className="max-w-md">
-                <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
-                <p className="mb-5">
-                    Shop the Best Products at Unbeatable Prices. Fast Shipping & Easy Returns!
-                </p>
-                <button className="btn btn-primary">Get Started</button>
-            </div>
+    <div className="hero min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="cadre p-20 shadow-lg rounded-lg flex items-center space-x-20 bg-transparente">
+        {/* Left-side text */}
+        <div className="hero-text">
+          <h1 className="text-4xl font-bold">Welcome to Our Website</h1>
+          <p className="mt-4 text-lg">Here is some information about our services...</p>
         </div>
+        
+        {/* Right-side image */}
+        <div className="hero-image">
+          <img src={img1} alt="Hero" className="max-w-md" />
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
