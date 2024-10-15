@@ -1,112 +1,22 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
 import filter from "../assets/filter.svg";
-import airforce from '../assets/shoses.avif';
-import Ultraboost from '../assets/adidasUltra.avif';
-import puma from '../assets/puma.avif';
-import rebook from '../assets/rebook.jpg';
-import newb from '../assets/new.webp';
-import hovr from '../assets/hovravif.avif';
-import sbadri from '../assets/sbadri.webp';
-import triumph from '../assets/triumph.jpg';
-import hoka from '../assets/hoka.jpg';
-import vans from '../assets/vans.webp';
-
 import { ProductRow } from "./ProductRow";
 
-export const Products = ({ onAddPr }) => {
-  const [products, setProducts] = useState([
-    {
-      id: 1,
-      img: airforce,
-      name: "Nike Air Force",
-      category: "Mens Shoes",
-      price: 200,
-      stock: "In Stock",
-      status: "Active",
-    },
-    {
-      id: 2,
-      img: Ultraboost,
-      name: "Adidas Ultraboost",
-      category: "Mens Shoes",
-      price: 180,
-      stock: "Out of Stock",
-      status: "Inactive",
-    },
-    {
-      id: 3,
-      img: puma,
-      name: "Puma Suede Classic",
-      category: "Mens Shoes",
-      price: 90,
-      stock: "In Stock",
-      status: "Active",
-    },
-    {
-      id: 4,
-      img: rebook,
-      name: "Reebok Classic Leather",
-      category: "Mens Shoes",
-      price: 85,
-      stock: "In Stock",
-      status: "Active",
-    },
-    {
-      id: 5,
-      img: newb,
-      name: "New Balance 574",
-      category: "Mens Shoes",
-      price: 120,
-      stock: "In Stock",
-      status: "Active",
-    },
-    {
-      id: 6,
-      img: hovr,
-      name: "Under Armour HOVR Phantom",
-      category: "Mens Shoes",
-      price: 140,
-      stock: "Out of Stock",
-      status: "Inactive",
-    },
-    {
-      id: 7,
-      img: sbadri,
-      name: "Asics Gel-Kayano",
-      category: "Mens Shoes",
-      price: 160,
-      stock: "In Stock",
-      status: "Active",
-    },
-    {
-      id: 8,
-      img: triumph,
-      name: "Saucony Triumph",
-      category: "Mens Shoes",
-      price: 150,
-      stock: "In Stock",
-      status: "Active",
-    },
-    {
-      id: 9,
-      img: hoka,
-      name: "Hoka One One Bondi",
-      category: "Mens Shoes",
-      price: 180,
-      stock: "In Stock",
-      status: "Active",
-    },
-    {
-      id: 10,
-      img: vans,
-      name: "Vans Old Skool",
-      category: "Mens Shoes",
-      price: 65,
-      stock: "In Stock",
-      status: "Active",
-    },
-  ]);
+export const Products = ({ onAddPr, addedList }) => {
+  const initialProducts = [];
+
+  const [products, setProducts] = useState(initialProducts);
+  
+  useEffect(() => {
+    if (addedList && addedList.length > 0) {
+      setProducts((prevProducts) => {
+        const existingIds = new Set(prevProducts.map((product) => product.id));
+        const newProducts = addedList.filter((newProduct) => !existingIds.has(newProduct.id));
+        return [...prevProducts, ...newProducts];
+      });
+    }
+  }, [addedList]);
+  
 
   const handleAddAction = () => {
     if (onAddPr) {
@@ -115,6 +25,7 @@ export const Products = ({ onAddPr }) => {
   };
 
   const handleDelete = (id) => {
+    console.log("Deleting product with ID:", id); // Debugging statement
     const updatedProducts = products.filter((product) => product.id !== id);
     setProducts(updatedProducts);
   };
@@ -151,13 +62,14 @@ export const Products = ({ onAddPr }) => {
       <div className="w-full overflow-y-auto h-4/5">
         {products.map((product) => (
           <ProductRow
-            key={product.id}
+            key={product.id} // Ensure unique key prop
             name={product.name}
             img={product.img}
             stock={product.stock}
             status={product.status}
             price={product.price}
-            onDelete={() => handleDelete(product.id)}
+            category={product.category}
+            onDelete={() => handleDelete(product.id)} // Ensure proper delete function
           />
         ))}
       </div>

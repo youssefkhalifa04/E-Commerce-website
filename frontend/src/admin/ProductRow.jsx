@@ -1,7 +1,8 @@
 import React from 'react'
 import pic from '../assets/shoses.avif'
 import del from '../assets/trash.svg'
-export const ProductRow = ({img , name , category , price , stock , status , onDelete}) => {
+export const ProductRow = ({img, name , category , price , stock , status , onDelete}) => {
+  
   return (
     <div className='flex justify-between items-center  pl-4 pr-4 gap-2 h-16 border-b-2 border-slate-300 cursor-pointer hover:bg-slate-200'>
         <div className="flex justify-start gap-3 items-center w-1/6 h-full ">
@@ -16,5 +17,6 @@ export const ProductRow = ({img , name , category , price , stock , status , onD
             <img src={del} alt="Delete" className='w-7'onClick={onDelete}/>
         </div>
     </div>
+    
   )
 }
