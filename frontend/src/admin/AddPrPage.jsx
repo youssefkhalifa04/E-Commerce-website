@@ -7,13 +7,17 @@ export const AddPrPage = ({ onSendMessage2 }) => {
   const [productPrice, setProductPrice] = useState(""); // State for product price
   const [category, setCategory] = useState(""); // State for category
   const [status, setStatus] = useState(""); // State for status
-  
+  const [fileName, setFileName] = useState('');
+
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       setSelectedImage(URL.createObjectURL(file));
+      setFileName(file.name);
+      console.log(file.name); // Log the file name directly
     }
   };
+  
 
   const handleCloseAction = () => {
     onSendMessage2({ type: 'close', value: 'false' }); // Send close action

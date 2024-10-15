@@ -64,7 +64,7 @@ export const Products = ({ onAddPr, addedList }) => {
           <ProductRow
             key={product.id} // Ensure unique key prop
             name={product.name}
-            img={product.img}
+            img={product.image}
             stock={product.stock}
             status={product.status}
             price={product.price}

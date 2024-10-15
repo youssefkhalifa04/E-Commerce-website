@@ -1,6 +1,7 @@
 import React from 'react'
 import pic from '../assets/shoses.avif'
 import del from '../assets/trash.svg'
+import edit from '../assets/edit.svg'
 export const ProductRow = ({img, name , category , price , stock , status , onDelete}) => {
   
   return (
@@ -13,8 +14,10 @@ export const ProductRow = ({img, name , category , price , stock , status , onDe
         <div className="flex justify-center items-center w-1/6 h-full ">${ price || "200"}</div>
         <div className="flex justify-center items-center w-1/6 h-full ">{stock || "In Stock"}</div>
         <div className="flex justify-center items-center w-1/6 h-full ">{status ||"Active" }</div>
-        <div className="flex justify-center items-center w-1/6 h-full ">
-            <img src={del} alt="Delete" className='w-7'onClick={onDelete}/>
+        <div className="flex justify-center items-center w-1/6 h-full  flex justify-center items-center gap-2">
+            <img src={edit} className='w-7 hover:scale-105'/>
+            <img src={del} alt="Delete" className='w-7 hover:scale-105'onClick={onDelete}/>
+            
         </div>
     </div>
     
