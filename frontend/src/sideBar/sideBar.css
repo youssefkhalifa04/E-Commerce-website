@@ -10,6 +10,6 @@
 .dash-row.active {
     background-color: #e5e7eb; /* Slightly darker gray for active state */
     border-left: 10px solid oklch(var(--p)); /* Blue left border for emphasis */
-    transform: scale(1); /* Slightly larger for active item */
+   
 }
 
