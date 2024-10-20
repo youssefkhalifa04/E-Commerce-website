@@ -72,7 +72,7 @@ const handleConfirm = () => {
   };
 
   return (
-    <div className="w-11/12 h-5/6 rounded-xl ml-12 mt-5 select-none gap-4 pr-4 flex justify-start items-center">
+    <div id="container addPage" className="w-11/12 h-5/6 rounded-xl ml-12 mt-5 select-none gap-4 pr-4 flex justify-start items-center">
       {isConfirmed === true && (
         <div role="alert" className="alert alert-success w-2/3 mt-4 fixed top-0 left-72 z-50">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
@@ -89,7 +89,7 @@ const handleConfirm = () => {
           <span>Missing or Invalid parameters!</span>
         </div>
       )}
-      <div className="flex flex-col gap-4 items-center justify-center w-1/3 h-full">
+      <div  className="flex flex-col gap-4 items-center justify-center w-1/3 h-full">
         <input
           id="fileInput"
           type="file"
@@ -102,6 +102,7 @@ const handleConfirm = () => {
             src={selectedImage}
             className="w-full h-2/3 object-cover border-2 border-slate-300 rounded-2xl"
             alt="Product Preview"
+            id="prImage"
           />
         )}
 
@@ -111,7 +112,7 @@ const handleConfirm = () => {
       </div>
       <div className="divider lg:divider-horizontal"></div>
       <div className="flex flex-col gap-8 justify-center items-center p-14 w-2/3 h-full">
-        <div className="flex justify-around gap-4 items-center w-full ">
+        <div id="flex-col" className="flex justify-around gap-4 items-center w-full ">
           <input
             type="text"
             placeholder="Product Name"
@@ -127,7 +128,7 @@ const handleConfirm = () => {
             onChange={(e) => setProductPrice(e.target.value)} // Update product price
           />
         </div>
-        <div className="flex justify-around gap-4 items-center w-full ">
+        <div id="flex-col" className="flex justify-around gap-4 items-center w-full ">
           <select
             className="select select-primary w-full max-w-xs"
             value={category}

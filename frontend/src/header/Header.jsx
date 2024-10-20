@@ -2,19 +2,24 @@ import React from "react";
 import { Theme } from "./Theme";
 import { useNavigate } from "react-router-dom";
 import img from "../assets/person.svg";
-
+import "./header.css";
+import menu from "../assets/menu.svg";
 export const Header = () => {
-  const navigate = useNavigate(); // Hook call here
+  const navigate = useNavigate();
 
   return (
     <div className="fuck fixed top-0 right-0 left-0 z-50">
       <div className="navbar bg-base-100 flex items-center justify-around">
         <div className="">
-          <a className="btn btn-ghost text-xl" onClick={() => navigate("/")}>EShopper</a>
+          <a className="btn btn-ghost text-xl" onClick={() => navigate("/")}>
+            EShopper
+          </a>
         </div>
-        <ul className="menu menu-horizontal p-0 ml-10">
+        <ul id="navmnu" className="menu menu-horizontal p-0 ml-10">
           <li>
-            <a className="hover:bg-transparent" onClick={() => navigate("/")}>Home</a>
+            <a className="hover:bg-transparent" onClick={() => navigate("/")}>
+              Home
+            </a>
           </li>
           <li>
             <a className="hover:bg-transparent" onClick={()=>navigate("/about")}>About </a>
@@ -25,10 +30,16 @@ export const Header = () => {
           <li>
             <a className="hover:bg-transparent">Contact</a>
           </li>
+          <li>
+            <a onClick={() => navigate("/admin")}>Admin</a>
+          </li>
         </ul>
 
         <div className="flex-none">
-          <Theme />
+          <div id="hello">
+            <Theme />
+          </div>
+
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
@@ -59,10 +70,9 @@ export const Header = () => {
               className="card card-compact dropdown-content bg-base-100 z-[1] mt-3 w-52 shadow"
             >
               <div className="card-body">
-                <span className="text-lg font-bold">8 Items</span>
-                <span className="text-info">Subtotal: $999</span>
+                <span className="text-lg font-bold z-5">8 Items</span>
+                <span className="text-info">Total: $999</span>
                 <div className="card-actions">
-                  {/* Use navigate here */}
                   <button
                     className="btn btn-primary btn-block"
                     onClick={() => navigate("/cart")}
@@ -80,9 +90,8 @@ export const Header = () => {
               role="button"
               className="btn btn-ghost btn-circle avatar"
             >
-              <div className="w-9 rounded-full">
-              <img src={img} alt="" onClick={() => navigate('/login')} />
-
+              <div className="w-8 rounded-full">
+                <img src={img} alt="" onClick={() => navigate("/login")} />
               </div>
             </div>
             <ul
@@ -101,7 +110,47 @@ export const Header = () => {
               <li>
                 <a>Logout</a>
               </li>
+
+              <li id="theme-in-dropdown" style={{ display: "none" }}>
+                <Theme />
+              </li>
             </ul>
+          </div>
+
+          <div id="drawerH" className="drawer z-9999999">
+            <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+            <div className="drawer-content">
+              <label htmlFor="my-drawer" className="rounded-full btn">
+                <img src={menu} className="w-6 cursor-pointer" />
+              </label>
+            </div>
+            <div className="drawer-side">
+              <label
+                htmlFor="my-drawer"
+                aria-label="close sidebar"
+                className="drawer-overlay"
+              ></label>
+              <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+                <li>
+                  <a onClick={() => navigate("/")}>Home</a>
+                </li>
+                <li>
+                  <a>About</a>
+                </li>
+                <li>
+                  <a>Products</a>
+                </li>
+                <li>
+                  <a>Contact</a>
+                </li>
+                <li>
+                  <a onClick={() => navigate("/admin")}>Admin</a>
+                </li>
+                <li>
+                  <Theme />
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

@@ -28,10 +28,11 @@ export const Products = ({ onAddPr, addedList }) => {
     console.log("Deleting product with ID:", id); // Debugging statement
     const updatedProducts = products.filter((product) => product.id !== id);
     setProducts(updatedProducts);
+    setProducts(updatedProducts) ;
   };
 
   return (
-    <div className="w-11/12 h-5/6 rounded-xl ml-12 mt-5 select-none">
+    <div id="container" className="w-11/12 h-5/6 rounded-xl ml-12 mt-5 select-none">
       <div className="w-full bg-transparent h-16 border-b-2 border-slate-300 flex justify-between pl-10 pr-10 items-center">
         <h1 className="text-xl">Products list</h1>
         <div className="flex items-center justify-around gap-2">

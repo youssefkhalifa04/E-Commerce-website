@@ -30,7 +30,7 @@ export const SideBar = ({ onSendMessage }) => {
     ];
 
     return (
-        <div className='side-bar w-1/6 flex flex-col justify-start border-2 rounded-l-xl border-slate-600 h-full pt-16 select-none'>
+        <div >
             {items.map((item) => (
                 <div
                     key={item.id}
