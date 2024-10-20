@@ -9,7 +9,8 @@ import { Login } from './Login/Login';  // Make sure Login is properly imported 
 import {Signup} from './Login/Signup';
 import { ThemeProvider } from './header/ThemeContext.jsx'; // Adjust the path accordingly
 import { ThemeController } from './header/ThemeController';
-import {About} from './About.jsx';
+import About from './About'; // If it's a default export
+
 
 function App() {
   return (
