@@ -17,7 +17,7 @@ export const Header = () => {
             <a className="hover:bg-transparent" onClick={() => navigate("/")}>Home</a>
           </li>
           <li>
-            <a className="hover:bg-transparent">About</a>
+            <a className="hover:bg-transparent" onClick={()=>navigate("/about")}>About </a>
           </li>
           <li>
             <a className="hover:bg-transparent">Products</a>
