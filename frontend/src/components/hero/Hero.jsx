@@ -16,7 +16,10 @@ export const Hero = () => {
         <div className="hero-image">
           <img src={img1} alt="Hero" className="max-w-md" />
         </div>
+        
       </div>
     </div>
+    
+
   );
 };

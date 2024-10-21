@@ -22,7 +22,7 @@ export const Header = () => {
             </a>
           </li>
           <li>
-            <a className="hover:bg-slate-100">About</a>
+            <a className="hover:bg-transparent" onClick={()=>navigate("/about")}>About </a>
           </li>
           <li>
             <a className="hover:bg-slate-100">Products</a>
