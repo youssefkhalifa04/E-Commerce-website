@@ -1,14 +1,15 @@
 
 import React from 'react';
 
+
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Cart } from './shoppingBasket/Cart';
-import { Home } from './Home/Home';
-import { Admin } from './admin/Admin';
-import { Login } from './Login/Login';  // Make sure Login is properly imported from './Login/Login'
-import {Signup} from './Login/Signup';
-import { ThemeProvider } from './header/ThemeContext.jsx'; // Adjust the path accordingly
-import { ThemeController } from './header/ThemeController';
+import { Cart } from './components/shoppingBasket/Cart.jsx';
+import { Home } from './components/Home/Home.jsx';
+import { Admin } from './admin/Panel/Admin.jsx';
+import { Login } from './components/Login/Login.jsx';  // Make sure Login is properly imported from './Login/Login'
+import {Signup} from './components/Login/Signup.jsx';
+import { ThemeProvider } from './components/header/ThemeContext.jsx'; // Adjust the path accordingly
+import { ThemeController } from './components/header/ThemeController.jsx';
 
 function App() {
   return (
