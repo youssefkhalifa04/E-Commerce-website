@@ -6,9 +6,9 @@ import "./header.css";
 import menu from "../../assets/menu.svg";
 export const Header = () => {
   const navigate = useNavigate();
-
+  const isAdmin = true;
   return (
-    <div className="fixed top-0 right-0 left-0 z-50 border-b-2 border-base-200">
+    <div className="fixed top-0 right-3 left-0 z-50 border-b-2 border-base-200">
       <div className="navbar bg-base-100 flex items-center justify-around">
         <div className="">
           <a className="btn btn-ghost text-xl" onClick={() => navigate("/")}>
@@ -22,7 +22,12 @@ export const Header = () => {
             </a>
           </li>
           <li>
-            <a className="hover:bg-transparent" onClick={()=>navigate("/about")}>About </a>
+            <a
+              className="hover:bg-slate-100"
+              onClick={() => navigate("/about")}
+            >
+              About{" "}
+            </a>
           </li>
           <li>
             <a className="hover:bg-slate-100">Products</a>
@@ -30,9 +35,16 @@ export const Header = () => {
           <li>
             <a className="hover:bg-slate-100">Contact</a>
           </li>
-          <li>
-            <a className="hover:bg-slate-100" onClick={() => navigate("/admin")}>Admin</a>
-          </li>
+          {isAdmin && (
+            <li>
+              <a
+                className="hover:bg-slate-100"
+                onClick={() => navigate("/admin")}
+              >
+                Admin
+              </a>
+            </li>
+          )}
         </ul>
 
         <div className="flex-none">
@@ -135,7 +147,7 @@ export const Header = () => {
                   <a onClick={() => navigate("/")}>Home</a>
                 </li>
                 <li>
-                  <a>About</a>
+                  <a onClick={() => navigate("/about")}>About</a>
                 </li>
                 <li>
                   <a>Products</a>

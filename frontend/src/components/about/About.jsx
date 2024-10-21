@@ -1,13 +1,14 @@
 import React from "react";
-import about from "../src/assets/about.png";
-import { Footer } from "./footer/Footer";
-import { Header } from "./header/Header";
+import about from "../../assets/about.png";
+import { Footer } from "../footer/Footer";
+import { Header } from "../header/Header";
 
-const About = () => {
+export const About = () => {
  
   return (
     
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 py-20">
+    <div className="h-full mt-60 flex flex-col items-center justify-center bg-gray-100 py-20 select-none">
+      <Header/>
       <h1 className="text-2xl font-bold text-gray-500 mb-8 mt-8">ABOUT US</h1>
       <div className="flex flex-col lg:flex-row items-center justify-between max-w-6xl mx-auto mt-10 mb-10">
         <img
@@ -34,10 +35,10 @@ const About = () => {
       
         </div>
       </div>
-      <Header/>
-    <Footer/>
+      
+      <Footer/>
     </div>
   );
 };
 
-export default About;
+
