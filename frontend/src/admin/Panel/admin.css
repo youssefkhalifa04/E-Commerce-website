@@ -32,7 +32,7 @@
         overflow: auto;
     }
     #screen{
-        width: 100vw;
+        width: 200vw;
     }
     body {
   overflow: hidden;
@@ -70,7 +70,7 @@
         overflow: auto;
     }
     #screen{
-        width: 100vw;
+        width: 150vw;
     }
     body {
   overflow: hidden;
