@@ -69,7 +69,7 @@ export const Products = ({ onAddPr, addedList }) => {
       <div className="w-full overflow-auto h-4/5">
         <div
           id="screen"
-          className="flex justify-between gap-2 items-center w-full border-b-2 border-slate-300 pt-2 pb-2 pl-4 pr-4 sticky top-0 bg-primary z-10 overflow-x-auto"
+          className="flex justify-between gap-2 items-center w-full border-b-2 border-slate-300 pt-2 pb-2 pl-4 pr-4 sticky top-0 bg-white z-10 overflow-x-auto"
         >
           <li className="list-none w-1/6 flex justify-center items-center">
             Product name
