@@ -16,6 +16,9 @@
     #theme-in-dropdown {
         display: block; 
     }
+    #header{
+        right: 0;
+    }
 }
 
 
@@ -35,6 +38,9 @@
     #theme-in-dropdown {
         display: block; 
     }
+    #header{
+        right: 0;
+    }
 }
 
 
@@ -45,6 +51,8 @@
     #hello {
         display: block; 
     }
+    
+
 }
 /* Width of the scrollbar */
 ::-webkit-scrollbar {

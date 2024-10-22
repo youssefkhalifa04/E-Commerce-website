@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import img1 from "../../assets/image1.png";
 import img2 from "../../assets/image2.png";
 import img3 from "../../assets/image3.png";
@@ -10,6 +10,25 @@ import img8 from "../../assets/img8.png";
 import img9 from "../../assets/img9.png";
 
 const Collection = () => {
+  const [screenSize, setScreenSize] = useState(window.innerWidth);
+
+  useEffect(() => {
+ 
+    const handleResize = () => {
+      setScreenSize(window.innerWidth);
+    };
+
+
+    window.addEventListener("resize", handleResize);
+
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+
+  const productsClassname = screenSize > 768 ? "grid grid-cols-3 gap-11 ": "grid grid-cols-2 gap-11";
+  const bestClassname = screenSize > 768 ? "grid grid-cols-4 gap-11": "grid grid-cols-3 gap-11";
+
   const [products, setProducts] = useState([
     { id: 1, img: img1, name: "Man Round Neck Pure Cotton", price: "$64" },
     { id: 2, img: img2, name: "Men Printed Plain Cotton Shirt", price: "$52" },
@@ -31,8 +50,8 @@ const Collection = () => {
       <h1 className="text-4xl font-bold text-gray-600 mb-10 text-center">
         LATEST COLLECTION
       </h1>
-
-      <div className="grid grid-cols-3 gap-11 ml-10 mr-10">
+      
+      <div className='grid grid-cols-3 gap-11'>
         {products.map((product) => (
           <div key={product.id} className="text-center">
             <img
@@ -50,14 +69,14 @@ const Collection = () => {
       <h1 className="font-bold text-4xl text-gray-600 mb-12 text-center mt-10">
         BEST SELLERS
       </h1>
-
-      <div className="grid grid-cols-4 gap-11 ml-10 mr-10">
+      
+      <div className='grid grid-cols-4 gap-11'>
         {bestSellers.map((product) => (
           <div key={product.id} className="text-center">
             <img
               src={product.img}
               alt={product.name}
-              className="transform hover:scale-105 transition-transform duration-300 "
+              className='transform hover:scale-105 transition-transform duration-300'
             />
             <p className="mt-2 text-gray-600">
               {product.name} <br /> {product.price}

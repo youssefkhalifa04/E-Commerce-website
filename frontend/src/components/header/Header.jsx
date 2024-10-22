@@ -6,9 +6,10 @@ import "./header.css";
 import menu from "../../assets/menu.svg";
 export const Header = () => {
   const navigate = useNavigate();
+  
   const isAdmin = true;
   return (
-    <div className="fixed top-0 right-3 left-0 z-50 border-b-2 border-base-200">
+    <div id="header" className="fixed top-0 right-2 left-0 z-50 border-b-2 border-base-200">
       <div className="navbar bg-base-100 flex items-center justify-around">
         <div className="">
           <a className="btn btn-ghost text-xl" onClick={() => navigate("/")}>
