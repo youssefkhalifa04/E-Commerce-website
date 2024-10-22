@@ -36,25 +36,27 @@ export const About = () => {
       <h1 className="font-blond col-gray-600 text-2xl mb-20 ">
         WHY CHOOOSE US
       </h1>
-      <table className="table-auto border-collapse border border-gray-300 w-200 mb-20 ">
+      <table className="border-collapse border border-gray-300 mb-20 ml-20 mr-20" style={{ width: "900px", height: "250px" }}>
+
+
         <tr>
           <td className="border border-gray-500 px-4 py-2 font-bold">
             Quality Assurance:
-            <p  >
+            <p className="font-semibold text-gray-500">
               We meticulously select and vet each product to ensure it meets our
               stringent quality standards.
             </p>
           </td>
           <td className="border border-gray-500 px-4 py-2 font-bold">
             Convenience:
-            <p>
+            <p className="font-semibold text-gray-500">
               With our user-friendly interface and hassle-free ordering process,
               shopping has never been easier.
             </p>
           </td>
           <td className="border border-gray-500 px-4 py-2 font-bold">
             Exceptional Customer Service:
-            <p>
+            <p className="font-semibold text-gray-500">
               Our team of dedicated professionals is here to assist you,
               ensuring your satisfaction is our top priority.
             </p>
