@@ -8,6 +8,7 @@ import img6 from "../../assets/image6.png";
 import img7 from "../../assets/img7.png";
 import img8 from "../../assets/img8.png";
 import img9 from "../../assets/img9.png";
+import { useEffect } from 'react';
 
 const Collection = () => {
   const [screenSize, setScreenSize] = useState(window.innerWidth);
@@ -27,7 +28,9 @@ const Collection = () => {
 
 
   const productsClassname = screenSize > 768 ? "grid grid-cols-3 gap-11 ": "grid grid-cols-2 gap-11";
-  const bestClassname = screenSize > 768 ? "grid grid-cols-4 gap-11": "grid grid-cols-3 gap-11";
+
+  
+   const estClassname = screenSize > 768 ? "grid grid-cols-4 gap-11": "grid grid-cols-3 gap-11";
 
   const [products, setProducts] = useState([
     { id: 1, img: img1, name: "Man Round Neck Pure Cotton", price: "$64" },

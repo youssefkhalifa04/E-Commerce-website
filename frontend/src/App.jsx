@@ -11,6 +11,7 @@ import {Signup} from './components/Login/Signup.jsx';
 import { ThemeProvider } from './components/header/ThemeContext.jsx'; // Adjust the path accordingly
 import { ThemeController } from './components/header/ThemeController.jsx';
 import {About} from './components/about/About.jsx'
+import Contact from './components/Contact.jsx';
 function App() {
   return (
     <ThemeProvider>
@@ -23,6 +24,7 @@ function App() {
           <Route path="/login" element={<Login />} /> 
           <Route path="/signup" element={<Signup />} /> 
           <Route path="/about" element={<About />} /> 
+          <Route path="/contact" element={<Contact />} /> 
         </Routes>
       </Router>
     </ThemeProvider>
