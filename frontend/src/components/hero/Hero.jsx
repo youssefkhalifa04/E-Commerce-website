@@ -9,7 +9,7 @@ export const Hero = () => {
  
     const handleResize = () => {
       setScreenSize(window.innerWidth);
-      console.log(screenSize)
+      
     };
 
 
@@ -20,7 +20,7 @@ export const Hero = () => {
   }, []);
 
 
-  const c1 = screenSize > 1023 ? "cadre p-24 shadow-lg flex items-center justify-center   w-5/6": "cadre pr-16 pb-16 mt-36 shadow-lg flex flex-col items-center  justify-center gap-6 rounded-lg space-x-20 bg-transparente w-full";
+  const c1 = screenSize > 1023 ? "cadre p-24 shadow-lg flex items-center justify-center  w-5/6": "cadre pr-16 pb-16 mt-36 shadow-lg flex flex-col items-center  justify-center gap-6 rounded-lg space-x-20 bg-transparente w-full";
   const c2 = screenSize > 1023 ? "w-1/3 flex justify-center" : " " ;
 
   return (

@@ -12,7 +12,9 @@ export default {
 
   theme: {
 
-    extend: {},
+    extend: {
+      
+    },
 
   },
   daisyui: {
