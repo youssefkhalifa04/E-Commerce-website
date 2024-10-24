@@ -5,10 +5,8 @@ import { Header } from "../header/Header";
 
 export const About = () => {
   return (
-    <div>
-      <Header/>
-      <div className="h-full  flex flex-col items-center justify-center  py-20">
-      
+    <div className="min-h-screen flex flex-col items-center justify-center  py-20 bg-base-200">
+      <Header />
       <h1 className="text-2xl font-bold text-gray-500 mt-8">ABOUT US</h1>
       <div className="flex flex-col lg:flex-row items-center justify-between max-w-6xl mx-auto mt-10 mb-10">
         <img
@@ -65,8 +63,6 @@ export const About = () => {
           </td>
         </tr>
       </table>
-
-      
       <Footer />
     </div>
     </div>

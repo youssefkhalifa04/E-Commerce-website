@@ -34,7 +34,7 @@ export const Header = () => {
             <a className="hover:bg-slate-100">Products</a>
           </li>
           <li>
-            <a className="hover:bg-slate-100">Contact</a>
+            <a className="hover:bg-slate-100" onClick={()=>navigate("/contact")}>Contact </a>
           </li>
           {isAdmin && (
             <li>
