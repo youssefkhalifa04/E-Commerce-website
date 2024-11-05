@@ -6,10 +6,13 @@ import "./header.css";
 import menu from "../../assets/menu.svg";
 export const Header = () => {
   const navigate = useNavigate();
-  
+
   const isAdmin = true;
   return (
-    <div id="header" className="fixed top-0 right-2 left-0 z-50 border-b-2 border-base-200">
+    <div
+      id="header"
+      className="fixed top-0 right-2 left-0 z-50 border-b-2 border-base-200"
+    >
       <div className="navbar bg-base-100 flex items-center justify-around">
         <div className="">
           <a className="btn btn-ghost text-xl" onClick={() => navigate("/")}>
@@ -31,19 +34,22 @@ export const Header = () => {
             </a>
           </li>
           <li>
-            <a className="hover:bg-slate-100">Products</a>
+            <a className="hover:bg-slate-100">Collection</a>
           </li>
           <li>
-            <a className="hover:bg-slate-100" onClick={()=>navigate("/contact")}>Contact </a>
+            <a
+              className="hover:bg-slate-100"
+              onClick={() => navigate("/contact")}
+            >
+              Contact{" "}
+            </a>
           </li>
           {isAdmin && (
             <li>
-              <a
-                className="hover:bg-slate-100"
-                onClick={() => navigate("/admin")}
-              >
+              <button type="button" class="btn btn-secondary"
+                onClick={() => navigate("/admin")}>
                 Admin
-              </a>
+              </button>
             </li>
           )}
         </ul>
