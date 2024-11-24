@@ -1,10 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Footer } from "../footer/Footer";
 import { Header } from "../header/Header";
+import axios from "axios";
 
 export const Signup = () => {
   const navigate = useNavigate();
+  const [formaData, setFormaData] = useState({
+    Name: "",
+    Email: "",
+    Password: "",
+  });
+
+  // Handle input changes
+  const handlechange = (e) => {
+    const { name, value } = e.target; // Get name and value from the input
+    setFormaData({
+      ...formaData,
+      [name]: value, // Update the corresponding key in formaData
+    });
+  };
+
+  const handlesubmit = (e) => {
+    e.preventDefault();
+    // Signup logic
+    axios
+      .post("http://localhost:5000/app/Signup", formaData)
+      .then((res) => {
+        console.log("Response:", res.data);
+      })
+      .catch((err) => {
+        console.error("Error:", err);
+      });
+
+    console.log("Form submitted: ", formaData);
+    // Reset form
+    setFormaData({ Name: "", Email: "", Password: "" });
+    navigate("/Login"); // Redirect after successful signup
+  };
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -21,24 +54,32 @@ export const Signup = () => {
           </div>
 
           <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-            <form className="card-body">
+            <form className="card-body" onSubmit={handlesubmit}>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Name</span>
                 </label>
                 <input
                   type="text"
+                  name="Name" // Add name attribute
                   placeholder="Name"
                   className="input input-bordered"
+                  onChange={handlechange}
+                  value={formaData.Name}
                   required
                 />
+              </div>
+              <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
                 <input
                   type="email"
-                  placeholder="email"
+                  name="Email" // Add name attribute
+                  placeholder="Email"
                   className="input input-bordered"
+                  onChange={handlechange}
+                  value={formaData.Email}
                   required
                 />
               </div>
@@ -48,8 +89,11 @@ export const Signup = () => {
                 </label>
                 <input
                   type="password"
-                  placeholder="password"
+                  name="Password" // Add name attribute
+                  placeholder="Password"
                   className="input input-bordered"
+                  onChange={handlechange}
+                  value={formaData.Password}
                   required
                 />
                 <label className="label">
@@ -59,7 +103,9 @@ export const Signup = () => {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Sign Up</button>
+                <button className="btn btn-primary" type="submit">
+                  Sign Up
+                </button>
               </div>
               <label className="label">
                 <div className="flex justify-center items-center w-full">
