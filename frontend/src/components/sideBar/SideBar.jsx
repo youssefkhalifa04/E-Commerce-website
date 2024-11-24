@@ -20,13 +20,13 @@ export const SideBar = ({ onSendMessage }) => {
     };
 
     const items = [
-        { id: 'dashboard', label: 'Dashboard', icon: dashboard, message: "Admin", title: "Dashboard" },
+        //{ id: 'dashboard', label: 'Dashboard', icon: dashboard, message: "Admin", title: "Dashboard" },
         { id: 'products', label: 'Products', icon: pr, message: "Products list", title: "Products" },
-        { id: 'sales', label: 'Sales', icon: sales, message: "Sales list", title: "Sales" },
+        //{ id: 'sales', label: 'Sales', icon: sales, message: "Sales list", title: "Sales" },
         { id: 'customers', label: 'Customers', icon: users, message: "Customers list", title: "Customers" },
-        { id: 'analytics', label: 'Analytics', icon: analyses, message: "Admin", title: "Analytics" },
-        { id: 'notifications', label: 'Notifications', icon: notifications, message: "Admin", title: "Notifications" },
-        { id: 'settings', label: 'Settings', icon: settings, message: "Admin", title: "Settings" },
+        //{ id: 'analytics', label: 'Analytics', icon: analyses, message: "Admin", title: "Analytics" },
+        //{ id: 'notifications', label: 'Notifications', icon: notifications, message: "Admin", title: "Notifications" },
+        //{ id: 'settings', label: 'Settings', icon: settings, message: "Admin", title: "Settings" },
     ];
 
     return (

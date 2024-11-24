@@ -14,7 +14,7 @@ export const About = () => {
           src={about}
           alt="About Us"
         />
-        <div className="w-64 h-auto lg:w-1/2 lg:pl-10 text-gray-700 mt-12 lg:mt-0 mt-10 mb-10 mr-40">
+        <div className="w-64 h-auto lg:w-1/2 lg:pl-10 text-gray-700 mt-12 lg:mt-0  mb-10 mr-40">
           <p>
             Forever was born out of a passion for innovation and a desire to
             revolutionize the way people shop online. Our journey began with a
@@ -65,6 +65,6 @@ export const About = () => {
       </table>
       <Footer />
     </div>
-    </div>
+    
   );
 };

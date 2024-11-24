@@ -11,7 +11,7 @@ import {Signup} from './components/Login/Signup.jsx';
 import { ThemeProvider } from './components/header/ThemeContext.jsx'; // Adjust the path accordingly
 import { ThemeController } from './components/header/ThemeController.jsx';
 import {About} from './components/about/About.jsx'
-import Contact from './components/Contact.jsx';
+import Contact from './components/contact/Contact.jsx';
 function App() {
   return (
     <ThemeProvider>
