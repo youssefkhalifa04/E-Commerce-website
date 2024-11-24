@@ -46,7 +46,7 @@ export const Header = () => {
           </li>
           {isAdmin && (
             <li>
-              <button type="button" class="btn btn-secondary"
+              <button type="button" className="hover:bg-slate-100"
                 onClick={() => navigate("/admin")}>
                 Admin
               </button>

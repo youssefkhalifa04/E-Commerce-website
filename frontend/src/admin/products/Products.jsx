@@ -3,21 +3,28 @@ import filter from "../../assets/filter.svg";
 import { ProductRow } from "./ProductRow";
 
 export const Products = ({ onAddPr, addedList }) => {
-  const initialProducts = [];
+  
 
-  const [products, setProducts] = useState(initialProducts);
+  const [products, setProducts] = useState([]);
+  
 
+  
   useEffect(() => {
-    if (addedList && addedList.length > 0) {
-      setProducts((prevProducts) => {
-        const existingIds = new Set(prevProducts.map((product) => product.id));
-        const newProducts = addedList.filter(
-          (newProduct) => !existingIds.has(newProduct.id)
-        );
-        return [...prevProducts, ...newProducts];
+    fetch("http://localhost:5000/api/products")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setProducts(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching customers:", error);
       });
-    }
-  }, [addedList]);
+  }, []);
+  
 
   const handleAddAction = () => {
     if (onAddPr) {
@@ -35,7 +42,7 @@ export const Products = ({ onAddPr, addedList }) => {
       id="container"
       className="w-11/12 h-5/6 rounded-xl ml-12 mt-5 select-none"
     >
-      <div className="w-full bg-transparent h-16 border-b-2 border-slate-300 flex justify-between pl-10 pr-10 items-center">
+      <div className="w-full bg-transparent h-16 border-b-2  flex justify-between pl-10 pr-10 items-center">
         <h1 className="text-xl">Products list</h1>
         <div className="flex items-center justify-around gap-2">
           <details className="dropdown">
@@ -69,7 +76,7 @@ export const Products = ({ onAddPr, addedList }) => {
       <div className="w-full overflow-auto h-4/5">
         <div
           id="screen"
-          className="flex justify-between gap-2 items-center w-full border-b-2 border-slate-300 pt-2 pb-2 pl-4 pr-4 sticky top-0 bg-white z-10 overflow-x-auto"
+          className="flex justify-between gap-2 items-center w-full border-b-2 border-slate-300 pt-2 pb-2 pl-4 pr-4 sticky top-0  z-10 overflow-x-auto"
         >
           <li className="list-none w-1/6 flex justify-center items-center">
             Product name
@@ -93,13 +100,14 @@ export const Products = ({ onAddPr, addedList }) => {
 
         {products.map((product) => (
           <ProductRow
-            key={product.id}
-            name={product.name}
-            img={product.image}
-            stock={product.stock}
-            status={product.status}
-            price={product.price}
-            category={product.category}
+            key={product._id}
+            id={product._id}
+            name={product.Name}
+            img={product.ImageURL}
+            
+            status={product.Status}
+            price={product.Price}
+            category={product.Category}
             onDelete={() => handleDelete(product.id)}
           />
         ))}

@@ -6,7 +6,7 @@ import edit from '../../assets/edit.svg'
 export const ProductRow = ({img, name , category , price , stock , status , onDelete}) => {
   
   return (
-    <div id='screen'  className='flex justify-between items-center w-full pl-4 pr-4 gap-2 h-16 border-b-2 border-slate-300 cursor-pointer hover:bg-slate-200'>
+    <div  className='flex justify-between items-center w-full pl-4 pr-4 gap-2 h-16 border-b-2 border-slate-300 cursor-pointer hover:bg-slate-200'>
         
         <div  className="flex justify-start items-center gap-3 items-center w-1/6 h-full ">
             <img src={img || pic} className='w-10 h-10 object-cover'/>
