@@ -8,7 +8,7 @@ import img6 from "../../assets/image6.png";
 import img7 from "../../assets/img7.png";
 import img8 from "../../assets/img8.png";
 import img9 from "../../assets/img9.png";
-import { useEffect } from 'react';
+
 
 const Collection = () => {
   const [screenSize, setScreenSize] = useState(window.innerWidth);
