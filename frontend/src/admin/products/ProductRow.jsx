@@ -1,7 +1,7 @@
 import React from 'react'
 import pic from '../../assets/shoses.avif'
 import del from '../../assets/trash.svg'
-import './styles.css'
+
 import edit from '../../assets/edit.svg'
 export const ProductRow = ({img, name , category , price , stock , status , onDelete}) => {
   

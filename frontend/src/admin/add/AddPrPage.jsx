@@ -14,7 +14,7 @@ export const AddPrPage = ({ onSendMessage2 }) => {
     if (file) {
       setSelectedImage(URL.createObjectURL(file));
       setFileName(file.name);
-      console.log(file.name); // Log the file name directly
+      
     }
   };
   
@@ -45,7 +45,8 @@ const handleConfirm = () => {
             },
         };
         
-        onSendMessage2(params); // Send params to parent
+        //onSendMessage2(params); // Send params to parent
+        
         setIsConfirmed(true);
         handleCloseAction();
         resetForm();

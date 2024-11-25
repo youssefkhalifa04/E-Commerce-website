@@ -12,11 +12,11 @@ export const TopHeader = ({ PageTitle, onSendMessage }) => {
   };
 
   return (
-    <div className="interface flex flex-col w-8 w-full pt-3 pb-3 border-b-2 mt-11 mt-0 border-slate-600 bg-slate-200 bg-transparent select-none">
+    <div className="interface flex flex-col w-8 lg:w-full pt-3  border-b-2 mt-11 lg:mt-0 border-slate-600 bg-slate-200 bg-transparent select-none">
       <div className="interface-header w-full bg-transparent flex justify-between items-center">
         <div className='pl-20'>
-          <h1 id='hello' className='text-lg text-2xl'>{PageTitle}</h1>
-          <div id='theme-in-dropdown hidden'>
+          <h1 id='hello' className='text-2xl font-bold'>{PageTitle}</h1>
+          <div  className='lg:hidden'>
             
             <DropdownComponent onSendMessage={handleSideBarClick} />
           </div>

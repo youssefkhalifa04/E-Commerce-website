@@ -9,21 +9,6 @@ export const Products = ({ onAddPr, addedList }) => {
   
 
   
-  useEffect(() => {
-    fetch("http://localhost:5000/api/products")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setProducts(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching customers:", error);
-      });
-  }, []);
   
 
   const handleAddAction = () => {

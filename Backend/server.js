@@ -1,18 +1,26 @@
-require("dotenv").config();
+require("dotenv").config(); // Load environment variables from .env file
 const express = require("express");
-const mongoose = require("./connect");
 const cors = require("cors");
+const mongoose = require("./connect"); // Import the MongoDB connection file
 
 const app = express();
 
-// Middlewares
-app.use(express.json());
-app.use(cors());
+// Middleware
+app.use(express.json()); // Parse JSON bodies
+app.use(cors()); // Enable CORS
 
 // Routes
-app.use("/app", require("./routes/user"));
-app.use("/app", require("./routes/product"));
+app.use("/api/users", require("./routes/user")); // User-related routes
+app.use("/api/products", require("./routes/product")); // Product-related routes
+
+// Error Handling Middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack); // Log error stack for debugging
+  res.status(500).send({ error: "Something went wrong!" });
+});
 
 // Start Server
-const port = process.env.port || 4000;
-app.listen(port, () => console.log(`Server started at http://localhost:${port}`));
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server started on http://localhost:${PORT}`);
+});

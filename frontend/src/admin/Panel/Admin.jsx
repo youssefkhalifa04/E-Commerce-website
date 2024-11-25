@@ -4,7 +4,7 @@ import { TopHeader } from "../../components/topheader/Topheader";
 import { Products } from "../products/Products";
 import { Header } from "../../components/header/Header";
 import { AddPrPage } from "../add/AddPrPage";
-
+import { Search } from "../../components/search/Search";
 import { Costumers } from "../costumers/Costumers";
 
 export const Admin = () => {
@@ -73,15 +73,22 @@ export const Admin = () => {
   };
 
   return (
-    <section className="flex justify-center items-center lg:h-full w-full">
+    <section className="flex justify-center items-center lg:h-full w-screen">
       <div className="h-5/6 flex justify-center items-center w-full lg:w-11/12 mt-14">
-        <div id="hello" className='side-bar w-1/6 hidden lg:flex flex-col justify-start border-2 rounded-l-xl lg:border-l-slate-600 lg:border-t-slate-600 lg:border-b-slate-600 h-full pt-16 select-none'>
+        <div id="hello" className='w-1/6 hidden lg:flex flex-col h-full justify-start   select-none fixed left-1 top-24'>
           <SideBar onSendMessage={handleSideBarClick} />
         </div>
-        <Header />
-        <div id="container" className="h-full lg:rounded-r-xl lg:w-5/6 lg:border-2 lg:border-slate-600">
-          <TopHeader onSendMessage={handleSideBarClick} PageTitle={title} />
-          {currentComponent()}
+        <Header/>
+        <div  className="fixed right-0 left-0 lg:left-64 top-0 bottom-0    lg:border-2 lg:border-slate-600">
+          <div className="hidden lg:flex mt-12 flex-col">
+            <TopHeader PageTitle={title}/>
+            <div>
+              {currentComponent()}
+            </div>
+          </div>
+          <div className="lg:hidden fixed top-20 right-5">
+            <Search/>
+          </div>
           {isConfirmed && (
             <div role="alert" className="alert alert-success w-2/3 mt-4 fixed top-0 left-72 z-50">
               <span>The product has been added successfully</span>
