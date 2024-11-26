@@ -28,6 +28,7 @@ router.post("/signup", async (req, res) => {
       Name,
       Email,
       Password: hashedPassword,
+      Date : Date.now()
     });
 
     // Save the user to the database
@@ -38,6 +39,7 @@ router.post("/signup", async (req, res) => {
         id: savedUser._id,
         Name: savedUser.Name,
         Email: savedUser.Email,
+        Date : savedUser.Date 
       },
     });
   } catch (error) {
@@ -80,6 +82,17 @@ router.post("/login", async (req, res) => {
   } catch (error) {
     console.error("Error during login:", error);
     return res.status(500).json({ message: "An error occurred", error });
+  }
+});
+
+// Get all users route
+router.get("/", async (req, res) => {
+  try {
+    const users = await User.find(); // Fetch all users from the database
+    res.status(200).json(users); // Send users data as a JSON response
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    return res.status(500).json({ message: "An error occurred while fetching users" });
   }
 });
 

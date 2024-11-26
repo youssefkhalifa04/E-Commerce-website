@@ -25,7 +25,7 @@ export const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:5000/app/Login", loginData);
+            const res = await axios.post("http://localhost:5000/users/signup", loginData);
             if (res.status === 200) {
                 alert("Login successful! Enjoy your shopping with us.");
                 navigate("/"); // Redirect to the home page

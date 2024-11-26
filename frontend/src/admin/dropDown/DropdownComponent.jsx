@@ -7,8 +7,8 @@ import settings from '../../assets/setting.svg';
 import analyses from '../../assets/analyses.svg';
 import notifications from '../../assets/notifications.svg';
 
-const DropdownComponent = ({ onSendMessage }) => {
-  const [selectedItem, setSelectedItem] = useState('Dashboard');
+export const DropdownComponent = ({ onSendMessage }) => {
+  const [selectedItem, setSelectedItem] = useState('Products');
 
   const items = [
     //{ id: 'dashboard', label: 'Dashboard', icon: dashboard, message: "Admin", title: "Dashboard" },
@@ -28,19 +28,19 @@ const DropdownComponent = ({ onSendMessage }) => {
   };
 
   return (
-    <div className="dropdown dropdown-hover relative z-[9]">
-      <div tabIndex={0} role="button" className="btn bg-transparent border-none shadow-none m-1 z-[9]">
+    <div className="dropdown ">
+      <div tabIndex={0} role="button" className="btn bg-transparent border-none shadow-none m-1 ">
         {selectedItem}
       </div>
       <ul
         tabIndex={0}
-        className="dropdown-content menu bg-base-100 rounded-box z-[9] w-52 p-2 shadow"
+        className="dropdown-content menu bg-base-100 rounded-box  w-52 p-2 shadow"
       >
         {items.map((item) => (
           <li key={item.id} className="z-[9999]">
             <div
               onClick={() => sendMessage(item.message, item.title, item.label)}
-              className={`flex items-center gap-2 p-2 cursor-pointer z-[9] ${
+              className={`flex items-center gap-2 p-2 cursor-pointer  ${
                 selectedItem === item.label ? 'bg-gray-200' : ''
               }`}
             >
@@ -54,4 +54,4 @@ const DropdownComponent = ({ onSendMessage }) => {
   );
 };
 
-export default DropdownComponent;
+

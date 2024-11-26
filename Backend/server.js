@@ -16,7 +16,30 @@ app.use("/api/products", require("./routes/product")); // Product-related routes
 // Error Handling Middleware
 app.use((err, req, res, next) => {
   console.error(err.stack); // Log error stack for debugging
-  res.status(500).send({ error: "Something went wrong!" });
+  
+  // Handle different types of errors
+  if (err.name === "ValidationError") {
+    return res.status(400).send({ error: "Validation Error", message: err.message });
+  }
+
+  // If the error is from MongoDB or another source, handle it as a generic server error
+  if (err.name === "MongoError" || err.name === "CastError") {
+    return res.status(400).send({ error: "Database Error", message: err.message });
+  }
+
+  // General error handler
+  res.status(500).send({ error: "Something went wrong!", message: err.message });
+});
+
+// Handle uncaught exceptions and unhandled promise rejections globally
+process.on("uncaughtException", (error) => {
+  console.error("Uncaught Exception:", error);
+  process.exit(1); // Exit the application after handling uncaught exceptions
+});
+
+process.on("unhandledRejection", (reason, promise) => {
+  console.error("Unhandled Rejection:", reason);
+  process.exit(1); // Exit the application after handling unhandled promise rejections
 });
 
 // Start Server

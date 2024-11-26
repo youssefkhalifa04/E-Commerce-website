@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from "react";
 import filter from "../../assets/filter.svg";
 import { ProductRow } from "./ProductRow";
+import './h.css';
 
 export const Products = ({ onAddPr, addedList }) => {
-  
 
   const [products, setProducts] = useState([]);
-  
-
-  
-  
 
   const handleAddAction = () => {
     if (onAddPr) {
@@ -23,26 +19,28 @@ export const Products = ({ onAddPr, addedList }) => {
   };
 
   return (
-    <div
-      id="container"
-      className="w-11/12 h-5/6 rounded-xl ml-12 mt-5 select-none"
-    >
-      <div className="w-full bg-transparent h-16 border-b-2  flex justify-between pl-10 pr-10 items-center">
-        <h1 className="text-xl">Products list</h1>
-        <div className="flex items-center justify-around gap-2">
-          <details className="dropdown">
-            <summary className="btn btn-ghost flex items-center gap-1 justify-center">
+    <div className="w-full lg:w-11/12 fixed right-0 lg:relative lg:ml-12 mt-5 select-none">
+      <div className="w-full bg-transparent h-16 border-b-2 flex justify-between pl-10 pr-10 items-center">
+        <h1 className="hidden lg:flex text-xl">Products list</h1>
+        <div className="flex  w-full lg:w-min lg:relative items-center justify-around gap-2">
+          <div>
+          
+          </div>
+          <details className="dropdown relative">
+            <summary className="hover:bg-gray-200 pr-5 pl-5  flex justify-center cursor-pointer rounded-lg items-center p-3 gap-1 ">
               <img src={filter} className="w-6" alt="filter icon"/>
-              <p>Filter</p>
+              <div >
+              <p className="font-bold">Filter</p>
+              </div>
             </summary>
-            <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-              <li>
+            <ul className="menu dropdown-content bg-base-100 rounded-box w-52 p-2 shadow absolute lg:top-full mt-2 sm:top-12">
+              <li >
                 <a>By price</a>
               </li>
-              <li>
+              <li >
                 <a>By patience</a>
               </li>
-              <li>
+              <li >
                 <a>By availability</a>
               </li>
             </ul>
@@ -58,10 +56,10 @@ export const Products = ({ onAddPr, addedList }) => {
         </div>
       </div>
 
-      <div className="w-full overflow-auto h-4/5">
+      <div className="relative w-full">
         <div
           id="screen"
-          className="flex justify-between gap-2 items-center w-full border-b-2 border-slate-300 pt-2 pb-2 pl-4 pr-4 sticky top-0  z-10 overflow-x-auto"
+          className="flex justify-between gap-2 items-center w-full border-b-2 border-slate-300 pt-2 pb-2 pl-4 pr-4 sticky top-0 bg-white"
         >
           <li className="list-none w-1/6 flex justify-center items-center">
             Product name
@@ -89,7 +87,6 @@ export const Products = ({ onAddPr, addedList }) => {
             id={product._id}
             name={product.Name}
             img={product.ImageURL}
-            
             status={product.Status}
             price={product.Price}
             category={product.Category}
