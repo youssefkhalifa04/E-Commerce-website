@@ -3,9 +3,21 @@ import filter from "../../assets/filter.svg";
 import { ProductRow } from "./ProductRow";
 import './h.css';
 
-export const Products = ({ onAddPr, addedList }) => {
+export const Products = ({ onAddPr }) => {
 
   const [products, setProducts] = useState([]);
+  useEffect(() => {
+    // Fetch data from the backend
+    fetch("http://localhost:5000/api/products")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => setProducts(data))
+      .catch((error) => console.error("Error fetching products:", error));
+  }, []);
 
   const handleAddAction = () => {
     if (onAddPr) {

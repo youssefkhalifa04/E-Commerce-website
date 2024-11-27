@@ -1,26 +1,27 @@
+'use server';
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Footer } from "../footer/Footer"; // Adjust the import path
 import { Header } from "../header/Header";
 import axios from "axios";
-
 export const Login = () => {
     const navigate = useNavigate();
 
     const [loginData, setLoginData] = useState({
-        Name: "",
+        Email: "",
         Password: "",
     });
 
     const [error, setError] = useState("");
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const { name, value } = e.target; // Use 'name' instead of 'email'
         setLoginData({
             ...loginData,
-            [name]: value,
+            [name]: value, // Update the correct field dynamically
         });
     };
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -56,14 +57,14 @@ export const Login = () => {
                         <form className="card-body" onSubmit={handleSubmit}>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Name</span>
+                                    <span className="label-text">Email</span>
                                 </label>
                                 <input
                                     type="text"
-                                    name="Name"
-                                    placeholder="Name"
+                                    name="Email"
+                                    placeholder="Email"
                                     className="input input-bordered"
-                                    value={loginData.Name}
+                                    value={loginData.Email}
                                     onChange={handleChange}
                                     required
                                 />
@@ -93,7 +94,7 @@ export const Login = () => {
                             <label className="label">
                                 <div className="flex justify-center items-center w-full">
                                     <a
-                                        href="#"
+                                        
                                         className="label-text-alt link link-hover"
                                         onClick={() => navigate("/signup")}
                                     >

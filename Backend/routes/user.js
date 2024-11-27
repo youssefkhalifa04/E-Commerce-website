@@ -51,18 +51,19 @@ router.post("/signup", async (req, res) => {
 // Login route
 router.post("/login", async (req, res) => {
   try {
-    const { Name, Password } = req.body;
+    const { Email, Password } = req.body;
 
     // Validate request data
-    if (!Name || !Password) {
-      return res.status(400).json({ message: "Name and password are required" });
+    if (!Email || !Password) {
+      return res.status(400).json({ message: "Email and password are required" });
     }
 
     // Find the user by Name
-    const user = await User.findOne({ Name });
+    const user = await User.findOne({ Email });
     if (!user) {
-      return res.status(401).json({ message: "Invalid name or password" });
+      return res.status(401).json({ message: "Invalid Email or password" });
     }
+    console.log("we found a user with the email : ",Email);
 
     // Compare the provided password with the hashed password
     const isPasswordValid = await bcrypt.compare(Password, user.Password);
