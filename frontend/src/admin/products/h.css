@@ -1,0 +1,16 @@
+/* Ensure dropdown is above the header */
+.dropdown-content {
+  z-index: 1000; /* Higher than the table header */
+  position: absolute; /* Ensure it can overlay */
+}
+
+/* Prevent clipping */
+#screen {
+  overflow: visible; /* Allow dropdown to expand beyond container */
+}
+
+/* Table header fix */
+.table-header {
+  z-index: 500; /* Lower than the dropdown */
+  position: relative; /* Create a positioning context */
+}

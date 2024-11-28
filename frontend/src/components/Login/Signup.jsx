@@ -21,23 +21,25 @@ export const Signup = () => {
     });
   };
 
-  const handlesubmit = (e) => {
-    e.preventDefault();
-    // Signup logic
-    axios
-      .post("http://localhost:5000/app/Signup", formaData)
-      .then((res) => {
-        console.log("Response:", res.data);
-      })
-      .catch((err) => {
-        console.error("Error:", err);
-      });
+  const [errorMessage, setErrorMessage] = useState("");
 
-    console.log("Form submitted: ", formaData);
-    // Reset form
-    setFormaData({ Name: "", Email: "", Password: "" });
-    navigate("/Login"); // Redirect after successful signup
-  };
+const handlesubmit = (e) => {
+  e.preventDefault();
+  axios
+    .post("http://localhost:5000/api/users/signup", formaData) // Ensure correct API URL
+    .then((res) => {
+      console.log("Response:", res.data);
+      navigate("/Login"); // Redirect after successful signup
+    })
+    .catch((err) => {
+      console.error("Error:", err);
+      setErrorMessage("Signup failed, please try again.");
+    });
+
+  console.log("Form submitted: ", formaData);
+  setFormaData({ Name: "", Email: "", Password: "" }); // Reset form
+};
+
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -122,6 +124,8 @@ export const Signup = () => {
           </div>
         </div>
       </div>
+      {errorMessage && <div className="alert alert-error">{errorMessage}</div>}
+
       <Footer /> {/* Move Footer to the bottom */}
     </div>
   );
