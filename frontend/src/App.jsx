@@ -12,6 +12,7 @@ import { ThemeProvider } from './components/header/ThemeContext.jsx'; // Adjust 
 import { ThemeController } from './components/header/ThemeController.jsx';
 import {About} from './components/about/About.jsx'
 import Contact from './components/contact/Contact.jsx';
+import  Collection  from './components/Collection.jsx';
 function App() {
   return (
     <ThemeProvider>
@@ -25,6 +26,7 @@ function App() {
           <Route path="/signup" element={<Signup />} /> 
           <Route path="/about" element={<About />} /> 
           <Route path="/contact" element={<Contact />} /> 
+          <Route path="/collection" element={<Collection />} /> 
         </Routes>
       </Router>
     </ThemeProvider>

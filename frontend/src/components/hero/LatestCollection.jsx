@@ -10,7 +10,7 @@ import img8 from "../../assets/img8.png";
 import img9 from "../../assets/img9.png";
 
 
-const Collection = () => {
+const LatestCollection = () => {
   const [screenSize, setScreenSize] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -89,4 +89,4 @@ const Collection = () => {
   );
 };
 
-export default Collection;
+export default LatestCollection;

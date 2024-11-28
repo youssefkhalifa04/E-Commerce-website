@@ -34,7 +34,7 @@ export const Header = () => {
             </a>
           </li>
           <li>
-            <a className="hover:bg-slate-100">Collection</a>
+            <a className="hover:bg-slate-100" onClick={() => navigate("/collection")}>Collection</a>
           </li>
           <li>
             <a

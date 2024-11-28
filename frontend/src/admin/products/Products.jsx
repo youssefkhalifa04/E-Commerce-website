@@ -72,7 +72,7 @@ export const Products = ({ onAddPr, addedList }) => {
           className="flex justify-between gap-2 items-center w-full border-b-2 border-slate-300 pt-2 pb-2 pl-4 pr-4 sticky top-0 bg-white z-10 overflow-x-auto"
         >
           <li className="list-none w-1/6 flex justify-center items-center">
-            Product name
+             Name
           </li>
           <li className="list-none w-1/6 flex justify-center items-center">
             Category
