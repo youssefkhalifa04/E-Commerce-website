@@ -1,7 +1,4 @@
-import React from 'react';
-import { useState , useEffect } from 'react';
-import img1 from "../../assets/hero.svg.jpg"; // Adjust the path as necessary
-import Collection from './Collection';
+import LatestCollection from "./LatestCollection";
 export const Hero = () => {
   const [screenSize, setScreenSize] = useState(window.innerWidth);
 
