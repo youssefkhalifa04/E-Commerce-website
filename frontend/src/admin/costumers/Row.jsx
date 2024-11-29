@@ -1,11 +1,16 @@
 import React from "react";
 
-export const Row = ({ username, email, date }) => {
+export const Row = ({ Firstname, Lastname, email, date ,onClick}) => {
+  const handleSeeMore = () => {
+    const seeMore  = "See more about " + Firstname;
+    return seeMore ;
+  };
   return (
-    <div className="w-full flex flex-row items-center justify-center hover:bg-gray-300 cursor-pointer">
-      <p className="w-1/3 flex items-center justify-center ">{username}</p>
-      <p className="w-1/3 flex items-center justify-center ">{email}</p>
-      <p className="w-1/3 flex items-center justify-center ">{date}</p>
+    <div onClick={onClick} title={handleSeeMore()} className="w-full flex flex-row items-center justify-center hover:bg-gray-300 cursor-pointer">
+      <p className="w-1/4 flex items-center justify-center ">{Firstname}</p>
+      <p className="w-1/4 flex items-center justify-center ">{Lastname}</p>
+      <p className="w-1/4 flex items-center justify-center  ">{email}</p>
+      <p className="w-1/4 flex items-center justify-center ">{date}</p>
     </div>
   );
 };

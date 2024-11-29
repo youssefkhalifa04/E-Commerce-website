@@ -13,6 +13,7 @@ import { ThemeController } from './components/header/ThemeController.jsx';
 import {About} from './components/about/About.jsx'
 import Contact from './components/contact/Contact.jsx';
 function App() {
+  
   return (
     <ThemeProvider>
       <Router>

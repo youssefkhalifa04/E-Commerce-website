@@ -7,51 +7,71 @@ import axios from "axios";
 export const Signup = () => {
   const navigate = useNavigate();
   const [formaData, setFormaData] = useState({
-    Name: "",
+    FirstName: "",
+    LastName: "",
     Email: "",
     Password: "",
   });
 
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // Added loading state
+
   // Handle input changes
   const handlechange = (e) => {
-    const { name, value } = e.target; // Get name and value from the input
+    const { name, value } = e.target;
     setFormaData({
       ...formaData,
-      [name]: value, // Update the corresponding key in formaData
+      [name]: value,
     });
   };
 
-  const [errorMessage, setErrorMessage] = useState("");
+  // Handle form submission
+  const handlesubmit = async (e) => {
+    e.preventDefault();
 
-const handlesubmit = (e) => {
-  e.preventDefault();
-  axios
-    .post("http://localhost:5000/api/users/signup", formaData) // Ensure correct API URL
-    .then((res) => {
+    // Basic frontend validation
+    if (
+      !formaData.FirstName.trim() ||
+      !formaData.LastName.trim() ||
+      !formaData.Email.trim() ||
+      !formaData.Password.trim()
+    ) {
+      setErrorMessage("All fields are required.");
+      return;
+    }
+
+    setIsLoading(true); // Start loading
+
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/users/signup",
+        formaData
+      );
       console.log("Response:", res.data);
-      navigate("/Login"); // Redirect after successful signup
-    })
-    .catch((err) => {
-      console.error("Error:", err);
-      setErrorMessage("Signup failed, please try again.");
-    });
 
-  console.log("Form submitted: ", formaData);
-  setFormaData({ Name: "", Email: "", Password: "" }); // Reset form
-};
-
+      setErrorMessage(""); // Clear any previous errors
+      setFormaData({ FirstName: "", LastName: "", Email: "", Password: "" }); // Reset form data
+      navigate("/Login"); // Redirect on successful signup
+    } catch (err) {
+      console.error("Error:", err.response?.data || err.message);
+      setErrorMessage(
+        err.response?.data?.message || "Signup failed, please try again."
+      );
+    } finally {
+      setIsLoading(false); // Stop loading
+    }
+  };
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header /> {/* Move Header to the top */}
+      <Header />
       <div className="hero bg-base-200 flex-grow flex items-center justify-center">
         <div className="hero-content flex-col lg:flex-row-reverse mt-16">
           <div className="text-center lg:text-left">
             <h1 className="text-4xl font-bold">Sign Up Now!</h1>
             <p className="py-6">
               E-Shopping offers a seamless online shopping experience, featuring
-              a wide variety of products at competitive prices, all from the
-              comfort of your home.
+              a wide variety of products.
             </p>
           </div>
 
@@ -59,15 +79,29 @@ const handlesubmit = (e) => {
             <form className="card-body" onSubmit={handlesubmit}>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Name</span>
+                  <span className="label-text">First Name</span>
                 </label>
                 <input
                   type="text"
-                  name="Name" // Add name attribute
-                  placeholder="Name"
+                  name="FirstName"
+                  placeholder="First name"
                   className="input input-bordered"
                   onChange={handlechange}
-                  value={formaData.Name}
+                  value={formaData.FirstName}
+                  required
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Last Name</span>
+                </label>
+                <input
+                  type="text"
+                  name="LastName"
+                  placeholder="Last name"
+                  className="input input-bordered"
+                  onChange={handlechange}
+                  value={formaData.LastName}
                   required
                 />
               </div>
@@ -77,7 +111,7 @@ const handlesubmit = (e) => {
                 </label>
                 <input
                   type="email"
-                  name="Email" // Add name attribute
+                  name="Email"
                   placeholder="Email"
                   className="input input-bordered"
                   onChange={handlechange}
@@ -91,22 +125,21 @@ const handlesubmit = (e) => {
                 </label>
                 <input
                   type="password"
-                  name="Password" // Add name attribute
+                  name="Password"
                   placeholder="Password"
                   className="input input-bordered"
                   onChange={handlechange}
                   value={formaData.Password}
                   required
                 />
-                <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
-                </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary" type="submit">
-                  Sign Up
+                <button
+                  className="btn btn-primary"
+                  type="submit"
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Signing Up..." : "Sign Up"}
                 </button>
               </div>
               <label className="label">
@@ -124,9 +157,12 @@ const handlesubmit = (e) => {
           </div>
         </div>
       </div>
-      {errorMessage && <div className="alert alert-error">{errorMessage}</div>}
-
-      <Footer /> {/* Move Footer to the bottom */}
+      {errorMessage && (
+        <div className="alert alert-error mt-4">
+          <span>{errorMessage}</span>
+        </div>
+      )}
+      <Footer />
     </div>
   );
 };

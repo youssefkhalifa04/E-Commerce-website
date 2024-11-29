@@ -21,6 +21,11 @@ export const Login = () => {
             [name]: value, // Update the correct field dynamically
         });
     };
+    const handleKeyPress = (e) => {
+        if (e.key === "Enter") {
+            handleSubmit(e);
+        }
+    };
     
 
     const handleSubmit = async (e) => {
