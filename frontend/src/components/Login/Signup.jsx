@@ -14,7 +14,7 @@ export const Signup = () => {
   });
 
   const [errorMessage, setErrorMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(false); // Added loading state
+  const [isLoading, setIsLoading] = useState(false);
 
   // Handle input changes
   const handlechange = (e) => {
@@ -29,36 +29,30 @@ export const Signup = () => {
   const handlesubmit = async (e) => {
     e.preventDefault();
 
-    // Basic frontend validation
-    if (
-      !formaData.FirstName.trim() ||
-      !formaData.LastName.trim() ||
-      !formaData.Email.trim() ||
-      !formaData.Password.trim()
-    ) {
-      setErrorMessage("All fields are required.");
-      return;
-    }
-
-    setIsLoading(true); // Start loading
+    setErrorMessage(""); // Clear previous errors
+    setIsLoading(true);
 
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/users/signup",
-        formaData
-      );
+      // Make a POST request to the signup endpoint
+      const res = await axios.post("http://localhost:5000/api/users/signup", formaData);
+
       console.log("Response:", res.data);
 
-      setErrorMessage(""); // Clear any previous errors
-      setFormaData({ FirstName: "", LastName: "", Email: "", Password: "" }); // Reset form data
-      navigate("/Login"); // Redirect on successful signup
+      // Reset form and navigate on success
+      setFormaData({ FirstName: "", LastName: "", Email: "", Password: "" });
+      navigate("/Login");
     } catch (err) {
-      console.error("Error:", err.response?.data || err.message);
-      setErrorMessage(
-        err.response?.data?.message || "Signup failed, please try again."
-      );
+      console.error("Error during signup:", err);
+
+      // Handle error response
+      const backendMessage = err.response?.data?.message || "Signup failed, please try again.";
+      if (backendMessage === "Email already in use") {
+        setErrorMessage("This email is already registered. Please use a different email.");
+      } else {
+        setErrorMessage(backendMessage);
+      }
     } finally {
-      setIsLoading(false); // Stop loading
+      setIsLoading(false);
     }
   };
 
@@ -138,6 +132,7 @@ export const Signup = () => {
                   className="btn btn-primary"
                   type="submit"
                   disabled={isLoading}
+                  onClick={()=>handlesubmit}
                 >
                   {isLoading ? "Signing Up..." : "Sign Up"}
                 </button>

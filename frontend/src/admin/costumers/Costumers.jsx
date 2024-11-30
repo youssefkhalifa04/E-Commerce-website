@@ -3,6 +3,7 @@ import { Row } from "./Row";
 
 import pic from "/nothing.webp";
 
+
 export const Costumers = () => {
   const [customers, setCustomers] = useState([]);
   const [user, setUser] = useState();
@@ -38,6 +39,55 @@ export const Costumers = () => {
 
     setUser(user);
   };
+  async function deleteUser (id)  {
+    
+    try {
+      const response = await fetch(`http://localhost:5000/api/users/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Error deleting user:", errorData.message);
+        return {
+          success: false,
+          message: errorData.message,
+        };
+      }
+  
+      const result = await response.json();
+      console.log("User deleted successfully:", result);
+      return {
+        success: true,
+        data: result,
+      };
+    } catch (error) {
+      console.error("Error occurred while deleting user:", error);
+      return {
+        success: false,
+        message: "An error occurred while deleting the user.",
+      };
+    }
+  }
+ 
+  const handleDelete = async (id) => {
+  const result = await deleteUser(id);
+  
+  if (result.success) {
+    // Remove the deleted user from the state
+    setTest(!test);
+    setCustomers((prevCustomers) =>
+      prevCustomers.filter((customer) => customer._id !== id)
+    );
+    console.log("User removed from the list");
+  } else {
+    console.error("Failed to delete user:", result.message);
+  }
+};
+
   const handleRoleChange = (newRole) => {
     if (!user) return;
 
@@ -71,7 +121,6 @@ export const Costumers = () => {
         id="right"
         className="w-full h-screen overflow-auto lg:overflow-hidden  select-none bg-gray-200 lg:border-2 lg:border-b-solid lg:border-gray-300"
       >
-        
         {test ? (
           customers.length > 0 ? (
             <div className="w-full flex flex-row items-center justify-center bg-gray-300 h-10 cursor-pointer border-b-2 border-slate-600">
@@ -112,7 +161,7 @@ export const Costumers = () => {
             <div className="flex flex-col lg:flex-row items-center justify-start gap-4 p-8">
               <div className="w-1/2 lg:h-screen flex flex-col items-center ">
                 <img
-                  src={getImageUrl(user) || pic}
+                  src={getImageUrl(user) || "/nothing.webp"}
                   className="h-56 lg:w-2/5 mt-20  lg:h-60 object-cover rounded-md lg:mb-8 lg:mt-20"
                   alt="Customer"
                 />
@@ -125,12 +174,20 @@ export const Costumers = () => {
                   <p>{user.LastName || "N/A"}</p>
                 </div>
 
-                <button
-                  className="btn btn-primary mt-11 lg:mt-20 lg:mr-72"
-                  onClick={() => setTest(!test)}
-                >
-                  Back
-                </button>
+                <div className="flex items-center justify-center gap-3 mt-11 ">
+                  <button
+                    className="btn btn-primary    lg:mr-72"
+                    onClick={() => setTest(!test)}
+                  >
+                    Back
+                  </button>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => handleDelete(user._id)}
+                  >
+                    Delete User
+                  </button>
+                </div>
               </div>
               <div className="hidden lg:flex divider lg:divider-horizontal"></div>
               <div className=" w-full lg:w-1/2 h-screen lg:pt-16  lg:h-screen flex flex-col justify-start mt-20 lg:mt-0 items-start">
@@ -178,24 +235,26 @@ export const Costumers = () => {
                   <label className="label cursor-pointer">
                     <span className="label-text w-24 font-bold">Admin</span>
                     <input
-                        type="radio"
-                        name="role"
-                        className="radio checked:bg-red-500"
-                        checked={user.Role === "Admin"}
-                        onChange={() => handleRoleChange("Admin")}
-                      />
+                      type="radio"
+                      name="role"
+                      className="radio checked:bg-red-500"
+                      checked={user.Role === "Admin"}
+                      onChange={() => handleRoleChange("Admin")}
+                    />
                   </label>
                 </div>
                 <div className="form-control">
                   <label className="label cursor-pointer">
-                    <span className="label-text w-24 font-bold">Normal User</span>
+                    <span className="label-text w-24 font-bold">
+                      Normal User
+                    </span>
                     <input
-                        type="radio"
-                        name="role"
-                        className="radio checked:bg-blue-500"
-                        checked={user.Role === "Normal User"}
-                        onChange={() => handleRoleChange("Normal User")}
-                      />
+                      type="radio"
+                      name="role"
+                      className="radio checked:bg-blue-500"
+                      checked={user.Role === "Normal User"}
+                      onChange={() => handleRoleChange("Normal User")}
+                    />
                   </label>
                 </div>
               </div>

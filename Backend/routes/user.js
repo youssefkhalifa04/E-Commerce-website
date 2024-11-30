@@ -3,6 +3,19 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
 const { body, validationResult } = require('express-validator');
+router.post("/check-email", async (req, res) => {
+  try {
+    const { Email } = req.body;
+    const existingUser = await User.findOne({ Email });
+    if (existingUser) {
+      return res.json({ available: false });
+    }
+    res.json({ available: true });
+  } catch (error) {
+    console.error("Error checking email:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
 
 // Sign up route
 router.post(
@@ -14,10 +27,12 @@ router.post(
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+     
       return res.status(400).json({ errors: errors.array() });
     }
     try {
       const { FirstName, LastName, Email, Password } = req.body;
+      console.log("Request Body:", req.body);
 
       // Validate request data
       if (!FirstName || !LastName || !Email || !Password) {
@@ -27,7 +42,7 @@ router.post(
       // Check if the user already exists (this step can be skipped if you are confident in the uniqueness constraint)
       const existingUser = await User.findOne({ Email });
       if (existingUser) {
-        return res.status(400).json({ message: "Email already in use" });
+        return res.status(400).json({ message:Email });
       }
 
       // Hash the password
@@ -39,8 +54,9 @@ router.post(
         FirstName,
         LastName,
         Email,
-        Password: hashedPassword,
+        Password : hashedPassword,
         Date: Date.now(),
+        Phone:"",
         Role: 'Normal User',
       });
 
@@ -53,17 +69,15 @@ router.post(
           FirstName: savedUser.FirstName,
           LastName: savedUser.LastName,
           Email: savedUser.Email,
+          Phone: savedUser.Phone,
           Date: savedUser.Date,
+          
           Role: 'Normal User',
         },
       });
     } catch (error) {
-      console.error("Error during signup:", error);
-
-      // Check for duplicate email error (MongoDB error code 11000)
-      if (error.code === 11000) {
-        return res.status(400).json({ message: "Email already in use" });
-      }
+      console.log(error);
+      
 
       return res.status(500).json({ message: "An error occurred", error });
     }
@@ -84,15 +98,18 @@ router.post("/login", async (req, res) => {
     // Find the user by Email
     const user = await User.findOne({ Email });
     if (!user) {
-      return res.status(401).json({ message: "Invalid Email or password" });
+      return res.status(404).json({ message: "Invalid Email or password" });
     }
 
     // Compare the provided password with the hashed password
-    const isPasswordValid = await bcrypt.compare(Password, user.Password);
-    if (!isPasswordValid) {
+    //const isPasswordValid = await bcrypt.compare(Password, user.Password);
+    /*if (!isPasswordValid) {
       return res.status(401).json({ message: "Invalid email or password" });
-    }
-
+    }*/
+   if (Password != user.Password)
+   {
+    return res.status(401).json({ message: "Invalid email or password" });
+   }
     // If credentials are valid, send success response
     return res.status(200).json({
       message: "Login successful",
@@ -101,6 +118,7 @@ router.post("/login", async (req, res) => {
         FirstName: user.FirstName,
         LastName: user.LastName,
         Email: user.Email,
+        Role : user.Role ,
       },
     });
   } catch (error) {
@@ -153,5 +171,26 @@ router.get("/", async (req, res) => {
     return res.status(500).json({ message: "An error occurred while fetching users" });
   }
 });
+// Delete user by ID
+router.delete("/:id", async (req, res) => {
+  try {
+    const { id } = req.params; // Get the user ID from the route parameter
+
+    // Find and delete the user
+    const deletedUser = await User.findByIdAndDelete(id);
+
+    // If user not found
+    if (!deletedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Respond with a success message
+    return res.status(200).json({ message: "User deleted successfully", user: deletedUser });
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    return res.status(500).json({ message: "An error occurred", error });
+  }
+});
+
 
 module.exports = router;

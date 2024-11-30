@@ -1,6 +1,6 @@
 
 import React from 'react';
-
+import { useContext, useState } from 'react';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Cart } from './components/shoppingBasket/Cart.jsx';
@@ -13,10 +13,12 @@ import { ThemeController } from './components/header/ThemeController.jsx';
 import {About} from './components/about/About.jsx'
 import Contact from './components/contact/Contact.jsx';
 import  Collection  from './components/Collection.jsx';
+export const Context = React.createContext();
 function App() {
-  
+  const [user , setUser] = useState("");
   return (
     <ThemeProvider>
+      <Context.Provider value={[user , setUser]}> 
       <Router>
         <ThemeController />
         <Routes>
@@ -30,6 +32,7 @@ function App() {
           <Route path="/collection" element={<Collection />} /> 
         </Routes>
       </Router>
+      </Context.Provider>
     </ThemeProvider>
   );
 }

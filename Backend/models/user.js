@@ -47,10 +47,11 @@ const userSchema = new mongoose.Schema({
   },
   Phone: {
     type: String,
-    required: false,
-    unique: true,
-    trim: true,
+    
+    
+    
     length:8 , 
+    
   },
   Image: {
     type: String,

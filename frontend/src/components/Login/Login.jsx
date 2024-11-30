@@ -3,10 +3,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Footer } from "../footer/Footer"; // Adjust the import path
 import { Header } from "../header/Header";
+import {Context} from "../../App";
+import { useContext } from "react";
 import axios from "axios";
 export const Login = () => {
     const navigate = useNavigate();
-
+    const [profile , setProfile] = useContext(Context);
     const [loginData, setLoginData] = useState({
         Email: "",
         Password: "",
@@ -31,9 +33,11 @@ export const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:5000/users/signup", loginData);
+            const res = await axios.post("http://localhost:5000/api/users/login", loginData);
             if (res.status === 200) {
-                alert("Login successful! Enjoy your shopping with us.");
+                
+                setProfile(res.data);
+                
                 navigate("/"); // Redirect to the home page
             }
         } catch (error) {

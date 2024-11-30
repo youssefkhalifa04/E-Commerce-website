@@ -1,4 +1,6 @@
 import LatestCollection from "./LatestCollection";
+import { useEffect, useState } from "react";
+import img1 from "../../assets/hero.jpg";
 export const Hero = () => {
   const [screenSize, setScreenSize] = useState(window.innerWidth);
 

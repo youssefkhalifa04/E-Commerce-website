@@ -3,11 +3,34 @@ import { Theme } from "./Theme";
 import { useNavigate } from "react-router-dom";
 import img from "../../assets/person.svg";
 import "./header.css";
+import { useContext } from "react";
+import { Context } from "../../App";
 import menu from "../../assets/menu.svg";
+import pic from '/nothing.webp'
 export const Header = () => {
   const navigate = useNavigate();
+  const [profile, setProfile] = useContext(Context);
+  const isAdmin = profile && profile.user.Role === "Admin";
+  const handleImage = (profile) => {
+    if (profile) {
+      console.log(profile);
+      return `/${profile.user.id}.jpg`;
+    }
+    return img;
+  };
+  const handleClick = () => {
+    if (!profile) {
+      navigate("/login");
+    }
+  };
 
-  const isAdmin = true;
+  const handleLogOut = () => {
+    if (profile) {
+      console.log(`the user ${profile.user.FirstName} logged out`);
+      setProfile("");
+      navigate("/");
+    }
+  };
   return (
     <div
       id="header"
@@ -34,7 +57,12 @@ export const Header = () => {
             </a>
           </li>
           <li>
-            <a className="hover:bg-slate-100" onClick={() => navigate("/collection")}>Collection</a>
+            <a
+              className="hover:bg-slate-100"
+              onClick={() => navigate("/collection")}
+            >
+              Collection
+            </a>
           </li>
           <li>
             <a
@@ -46,8 +74,11 @@ export const Header = () => {
           </li>
           {isAdmin && (
             <li>
-              <button type="button" className="hover:bg-slate-100"
-                onClick={() => navigate("/admin")}>
+              <button
+                type="button"
+                className="hover:bg-slate-100"
+                onClick={() => navigate("/admin")}
+              >
                 Admin
               </button>
             </li>
@@ -104,14 +135,25 @@ export const Header = () => {
           </div>
 
           <div className="dropdown dropdown-end">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle avatar"
-            >
-              <div className="w-8 rounded-full">
-                <img src={img} alt="" onClick={() => navigate("/login")} />
+            <div className="flex flex-row items-center gap-2">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className="w-8 rounded-full">
+                  <img
+                    src={handleImage(profile)|| pic}
+                    alt=""
+                    onClick={handleClick}
+                  />
+                </div>
               </div>
+              {profile && (
+                <p className="underline hidden lg:block cursor-pointer">
+                  Hello {profile.user.FirstName}!
+                </p>
+              )}
             </div>
             <ul
               tabIndex={0}
@@ -127,12 +169,10 @@ export const Header = () => {
                 <a>Settings</a>
               </li>
               <li>
-                <a>Logout</a>
+                <a onClick={handleLogOut}>Logout</a>
               </li>
 
-              <li id="theme-in-dropdown" style={{ display: "none" }}>
-                <Theme />
-              </li>
+              
             </ul>
           </div>
 
