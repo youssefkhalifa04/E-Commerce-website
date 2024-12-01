@@ -13,6 +13,7 @@ import { ThemeController } from './components/header/ThemeController.jsx';
 import {About} from './components/about/About.jsx'
 import Contact from './components/contact/Contact.jsx';
 import  Collection  from './components/Collection.jsx';
+import { Settings } from './components/header/settings/Settings.jsx';
 export const Context = React.createContext();
 function App() {
   const [user , setUser] = useState("");
@@ -23,6 +24,7 @@ function App() {
         <ThemeController />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/settings" element={<Settings />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/login" element={<Login />} /> 

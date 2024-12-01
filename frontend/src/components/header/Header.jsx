@@ -12,11 +12,11 @@ export const Header = () => {
   const [profile, setProfile] = useContext(Context);
   const isAdmin = profile && profile.user.Role === "Admin";
   const handleImage = (profile) => {
-    if (profile) {
-      console.log(profile);
-      return `/${profile.user.id}.jpg`;
+    if (!profile) {
+      return '/nothing.webp';
     }
-    return img;
+    
+    return `/${profile.user.id}.jpg`;
   };
   const handleClick = () => {
     if (!profile) {
@@ -143,7 +143,7 @@ export const Header = () => {
               >
                 <div className="w-8 rounded-full">
                   <img
-                    src={handleImage(profile)|| pic}
+                    src={handleImage(profile)}
                     alt=""
                     onClick={handleClick}
                   />
@@ -166,7 +166,7 @@ export const Header = () => {
                 </a>
               </li>
               <li>
-                <a>Settings</a>
+                <a onClick={() => navigate("/settings")}>Settings</a>
               </li>
               <li>
                 <a onClick={handleLogOut}>Logout</a>
