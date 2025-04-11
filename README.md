@@ -1,8 +1,4 @@
-Bien sûr, voici un exemple de fichier `README.md` en français pour ton dépôt GitHub [E-Commerce-website](https://github.com/youssefkhalifa04/E-Commerce-website.git). Ce fichier est conçu pour être clair, informatif et utile aux autres développeurs souhaitant comprendre ou contribuer à ton projet :
 
----
-
-```markdown
 # 🛍️ Plateforme E-Commerce
 
 Ce dépôt contient le code source d'une application web de commerce électronique, offrant une plateforme complète pour la vente en ligne de produits divers.
