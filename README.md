@@ -15,12 +15,11 @@ Ce dépôt contient le code source d'une application web de commerce électroniq
 
 - **Frontend** :
   - HTML5, CSS3, JavaScript
-  - Frameworks/libraries : [préciser les frameworks utilisés, par exemple React.js, Vue.js]
+  - Frameworks/libraries : ReactJs , Tailwind Css , daisyUI , NextUI
 - **Backend** :
-  - [Préciser le langage, par exemple Node.js, Python, PHP]
-  - Frameworks : [préciser les frameworks utilisés, par exemple Express, Django, Laravel]
+  - Node Js 
 - **Base de données** :
-  - [Préciser le système de gestion de base de données, par exemple MongoDB, MySQL, PostgreSQL]
+  - MongoDB
 
 ## 📂 Structure du projet
 
@@ -84,15 +83,5 @@ Les contributions sont les bienvenues ! Si vous souhaitez contribuer, veuillez s
 4. Poussez vers la branche (`git push origin nouvelle-fonctionnalite`).
 5. Ouvrez une Pull Request.
 
-## 📄 Licence
-
-Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus d'informations.
-
----
-
-*Note : Veuillez remplacer les sections entre crochets `[]` par les informations spécifiques à votre projet, telles que les noms des frameworks, des bases de données et des dossiers/fichiers.* Si vous avez besoin d'aide supplémentaire pour compléter ce `README.md`, n'hésitez pas à demander !
-```
-
----
 
 Ce modèle de `README.md` est conçu pour être informatif et structuré, facilitant la compréhension du projet par les autres développeurs et contribuant à une meilleure collaboration. 
